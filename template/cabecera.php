@@ -21,7 +21,8 @@
     
 
     <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="index.php"> Deadmanstale</a>
+        <a class="navbar-brand m-2" href="index.php">Deadmanstale</a>
+
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,13 +36,16 @@
                     <a class="nav-link" href="productos.php">Tienda <span class="sr-only"></span></a>
                 </li>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="login.php">Inicio de sesion <span class="sr-only"></span></a>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="mostrarCarrito.php">Carrito </a>
                 </li>
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="login.php">Inicio de sesion <span class="sr-only"></span></a>
+                </li>
+
+            
                 
             </ul>
            

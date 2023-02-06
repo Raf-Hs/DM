@@ -12,10 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Validamos que los datos hayan sido rellenados
 	$usuario = filter_var(strtolower($_POST['usuario']), FILTER_SANITIZE_STRING);
 	$pass = $_POST['password'];
+	$pass2 = $_POST['password2'];
 	$nombre=$_POST['nombre'];
-    $apellidoP=$_POST['apellidoP'];
-	$apellidoM=$_POST['apellidoM'];
-	$telefono=$_POST['telefono'];
+    $apellidos=$_POST['apellidos'];
 	$email=$_POST['email'];
 
 
@@ -23,18 +22,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// Comprobamos que ninguno de los campos este vacio. 
 	
-		if (empty($usuario) or empty($pass) or empty($nombre) or empty($nombre) or empty($apellidoP) or empty($apellidoM) ) 
+		if (empty($usuario) or empty($pass) or empty($nombre) or empty($apellidos) or empty($email) ) 
 		{
 			$errores = '<li>Por favor rellena todos los datos correctamente</li>';
 		} else {
 	
 			try {
-				$conexion = new PDO('mysql:host=localhost;dbname=luran', 'root', '');
+				$pdo = new PDO('mysql:host=localhost;dbname=luran', 'root', '');
 			} catch (PDOException $e) {
 				echo "Error YYY:" . $e->getMessage();
 			}
 	
-			$statement = $conexion->prepare('SELECT * FROM usuarios WHERE usuario = :usuario LIMIT 1');
+			$statement = $pdo->prepare('SELECT * FROM usuarios WHERE usuario = :usuario LIMIT 1');
 			$statement->execute(array(':usuario' => $usuario));
 	
 			$resultado = $statement->fetch();
@@ -54,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Comprobamos si hay errores, sino entonces agregamos el usuario y redirigimos.
 	if ($errores == '') {
 		$query="INSERT INTO usuarios (id,usuario,contrasenia,tipo,activo)VALUES (null, '$usuario', '$pass', 2,1)";
-		$resultado= $conexion->query($query);
+		$resultado= $pdo->query($query);
 
 		// Despues de registrar al usuario redirigimos para que inicie sesion.
 		header('Location: login.php');
@@ -87,67 +86,60 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 	<div class="d-flex flex-column align-items-center mt-2">
-		<h1 class="titulo">Regístro</h1>
+	<div class="card col-md-6 mt-8">
+			<div class="card-header bg-success bg-opacity-50 text-center">
+                <h1>
+                    
+                Registro
+                </h1>
+            </div>
 		
-		
+		<div class="card-body">
 		
 
 
 		<form class="formulario" name="login" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-			<div class="form-group">
-				<i class="icono izquierda fa fa-user"></i><input  required class="usuario" type="text" name="usuario" placeholder="Usuario">
-			</div>
-
-
 			
-			<div class="form-group">
-				<input  required  class="nombre" type="text" name="nombre" placeholder="Nombre">
-				<input  required class="apellidoP" type="text" name="apellidoP" placeholder="Apellido Paterno">
-				</i><input required class="apellidoM" type="text" name="apellidoM" placeholder="Apellido Materno">
-			</div>
-                        
-         
-           
-                
-            <div class="form-group">
-				<i class="icono izquierda fa fa-user"></i><input required  class="email" type="email" name="email" placeholder="Email">
-			</div>
-                
-			
-
-
-                <div>
-				<i class="icono izquierda fa fa-lock"></i><input required  class="password" type="password" name="password" placeholder="Contraseña">
-				
-			</div>
-
-			<div>
-				<i class="icono izquierda fa fa-lock"></i><input required  class="password" type="password" name="password" placeholder="Contraseña">
-				<i class="submit-btn fa fa-arrow-right" onclick="login.submit()"></i>
-			</div>
-			
-
-
-
-			
-
-
-
-			<!-- Comprobamos si la variable errores esta seteada, si es asi mostramos los errores -->
-			<?php if(!empty($errores)): ?>
-				<div class="error">
-					<ul>
-						<?php echo $errores; ?>
-					</ul>
+				<div class="form-group mt-4">
+					<i class=" fa fa-user md-3"></i><input  required  type="text" name="usuario" placeholder="Usuario">
+					<i class=" fa fa-user md-3"></i><input required   type="email" name="email" placeholder="Email">
 				</div>
-			<?php endif; ?>
-		</form>
 
-		<p >
+				<div class="form-group mt-4">
+				<i class=" fa fa-user md-3"></i><input  required  class="nombre " type="text" name="nombre" placeholder="Nombre">
+				<i class=" fa fa-user md-3"></i><input  required class="apellidos" type="text" name="apellidos" placeholder="Apellido">
+					
+				</div>
+
 			
-			<a href="login.php">Iniciar Sesión</a>
-		</p>
 
-	</div>
+				
+                <div class="mt-4">
+				<i class="icono izquierda fa fa-lock "></i><input required  class="password" type="password" name="password" placeholder="Contraseña">
+				<i class="icono izquierda fa fa-lock"></i><input required   type="password2" name="password2" placeholder="Repite la Contraseña">
+				</div>
+
+				
+
+				<div class="card-footer text-center mt-4">
+                <button class="btn-success"   onclick="login.submit()" type="submit" value="Login">
+                
+                Entrar
+                </button>
+            </div>
+			</form>
+				<div class="align-items-center">
+					<p>Ya tienes una cuenta?</p>
+					<a href="login.php"> Inicia Sesión</a>
+				</div>
+			</div>
+				</div> 
+		</div>
+		
+		
+			
+		
+
+	</div>	
 </body>
 </html>

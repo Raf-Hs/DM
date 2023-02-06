@@ -1,17 +1,28 @@
 
 
 
-    <div class="col-12 text-center"> &copy; LURAN 2022</div>
+    <div class="d-flex flex-column align-items-center mt-2 mb-3"> &copy; Deadmanstale 2023</div>
 
+    <p class="lead">Contáctanos: </p> 
 
-    <div class="col-md-4 ">
-
-					<h5 class="display-6">Contáctanos</h5>
-                    <p class="lead">Contáctanos: <br><a href="#">Facebook</a>  <br> <a href="#">Twitter</a> </p>
+    <div class="cd-flex flex-column align-items-left mb-5"> 
+        <i class="fas fa-facebook"></i>
+    <a href="#">Facebook</a>  
+    <i class="fas fa-facebook"></i>
+    <a href="#">Twitter</a>  
+    <i class="fas fa-facebook"></i>
+    <a href="#">Github </a>
+    </div>		
+    
+    		
+                    
+                 
+                    
+                   
                     
                     
                 
-</div>
+
 
 
 

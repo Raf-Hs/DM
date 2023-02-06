@@ -4,7 +4,7 @@
 
 session_start();
 
-/*
+
 // Comprobamos si ya han sido enviado los datos
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$username = filter_var(strtolower($_POST['username']), FILTER_SANITIZE_STRING);
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	//$password = hash('sha512', $password);
 
 }
-*/
+
 
 if($_SERVER["REQUEST_METHOD"]=="POST")
 
@@ -45,11 +45,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
 
 	}
 	
-	else
 
-	{
-		echo "Usuario o contraseña incorrectos";
-	}
+
 
 ?>
 
@@ -63,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $titulo ?></title>
+    <title>Login</title>
 	<link rel="shortcut icon" href="img/Botella.ico">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">

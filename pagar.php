@@ -1,6 +1,6 @@
 <?php 
-include '../global/config.php';
-include '../global/conexion.php';
+include 'global/config.php';
+include 'global/conexion.php';
 include 'carrito.php';
 include 'template/cabecera.php';
 
@@ -54,18 +54,7 @@ if($_POST){
        
         $sentenciaSQL->execute();
 
-       
-     
-/*
-        $sta = $conexion->prepare("select ID from venta where id_clie='$_SESSION[IdCliente]';");
-        $sta->execute();
-        $venta = $sta->fetch();
 
-        $Idventa=$venta["ID"];
-
-        echo $Idventa;
-        
-*/
     
         foreach($_SESSION['CARRITO'] as $indice=>$producto){ 
 
@@ -95,24 +84,13 @@ if($_POST){
             $sentencia->bindParam(":CANTIDAD",$producto['CANTIDAD']);
             $sentencia->execute();
 
-            //$sentencia=$pdo->prepare("CALL actualizarStock(IDINVENTARIO,CANTIDAD)");
-            //$sentencia->bindParam(":IDINVENTARIO",$producto['ID']);
-            //$sentencia->bindParam(":CANTIDAD",$producto['CANTIDAD']);
-            //$sentencia->execute();
-
-
-            
-/*
-            $query = "CALL actualizarStock(IDINVENTARIO,CANTIDAD)";
-            $sentencia->bindParam(":IDINVENTARIO",$producto['ID']);
-            $sentencia->bindParam(":CANTIDAD",$producto['CANTIDAD']);
-            $sentencia->execute();
-*/
+    
         }
 
         
    // echo "<h3>".$total."</h3>";
 }
+$total=50;
 ?>
 
 
@@ -145,7 +123,7 @@ if($_POST){
         <div id="paypal-button-container"></div>
     </p>
         <p>Los productos podrán ser descargados una vez que se procese el pago<br/>
-        <strong>(Para aclaraciones :luran@gmail.com)</strong>
+        <strong>(Para aclaraciones : Deadmanstales@gmail.com)</strong>
         </p>
 </div>
 
@@ -175,8 +153,8 @@ if($_POST){
                     transactions: [
                         {
                             amount: { total: '<?php echo $total;?>', currency: 'MXN' }, 
-                            description:"Compra de productos a Develoteca:$<?php echo number_format($total,2);?>",
-                            custom:"<?php echo $SID;?>#<?php echo openssl_encrypt($idVenta,COD,KEY); ?>"
+                            description:"Compra de productos a Deadmans:$<?php echo number_format($total,2);?>",
+                            //custom:"<?php echo $SID;?>#<?php echo openssl_encrypt($idVenta,COD,KEY); ?>"
                         }
                     ]
                 }

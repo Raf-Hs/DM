@@ -6,7 +6,7 @@
 
 ?>
 
-
+  
     <h3 class="mt-4">Lista del carrito</h3>
     <?php
     if(!empty($_SESSION['CARRITO'])){
